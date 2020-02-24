@@ -1,0 +1,18 @@
+Turn Spaced is a spaceship adventure game. Players control the crew a a spaceship from a top-down perspective.
+
+The story narrative is in the form of randomly-encountered quest chains, each driving the ship and its crew into battle and mystery.
+
+Combat is simultaneous turn based: The game is paused while the player queues up to two actions for each crew to perform over the next six seconds. After the player has queued up orders, the simulation runs for six seconds while thew crew performs those actions. Then the simulation pauses again for the next turn.
+
+The layout of the ship is customisable, with the player able to purchase rooms and interiors to fulfil the requirements of the ship. As the ship is damanged in combat, the hull can be breached, crew can be sucked out into space, and rooms can be damaged and destroyed.
+
+The crew each have skills that improve as they are used, and 'shirt' colours to represent speciality. EG:
+
+Gold:	Leadership
+Yellow:	Melee combat, Ranged combat
+Blue:	Medicine, Science
+Other:	Piloting, Navigation, ship-based weaponry(?), etc
+Red:	No speciality
+
+
+
