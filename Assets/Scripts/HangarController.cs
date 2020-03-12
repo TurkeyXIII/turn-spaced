@@ -13,6 +13,8 @@ public class HangarController : MonoBehaviour
     public GameObject BlocksContentPane;
     public GameObject RoomsContentPane;
 
+    public GameObject ShipUnderConstruction;
+
     private void Awake()
     {
         _hangarController = this;
@@ -23,6 +25,8 @@ public class HangarController : MonoBehaviour
     void Start()
     {
         BlocksContentPane.GetComponent<BlockSelectorsContent>().SetBlockList(AllBlockSelectors);
+
+
     }
 
     // Update is called once per frame
@@ -46,6 +50,9 @@ public class HangarController : MonoBehaviour
     {
         Destroy(_selectedBlock);
         _selectedBlock = null;
+
+        var construction = ShipUnderConstruction.GetComponent<Construction>();
+        construction.ClearShadows();
     }
 
     public static HangarController GetHangarController()
@@ -56,6 +63,12 @@ public class HangarController : MonoBehaviour
     public void SelectBlock(GameObject block)
     {
         if (_selectedBlock == null)
+        {
             _selectedBlock = Instantiate(block);
+
+            var construction = ShipUnderConstruction.GetComponent<Construction>();
+
+            construction.CreateShadows(_selectedBlock.GetComponent<Block>());
+        }
     }
 }
