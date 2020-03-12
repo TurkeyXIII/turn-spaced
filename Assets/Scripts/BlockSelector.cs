@@ -22,6 +22,6 @@ public class BlockSelector : MonoBehaviour
 
     void IveClickedMyself()
     {
-        Debug.Log("Clicked self");
+        HangarController.GetHangarController().SelectBlock(Block);
     }
 }
