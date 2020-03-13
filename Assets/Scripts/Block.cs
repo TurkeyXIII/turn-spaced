@@ -10,16 +10,9 @@ public class Block : MonoBehaviour
 
     private List<Doorway> _doorways;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _doorways = GetComponentsInChildren<Doorway>().ToList();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public List<Vector3> GetViableRoomPositions()

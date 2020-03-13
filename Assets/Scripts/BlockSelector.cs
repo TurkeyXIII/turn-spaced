@@ -11,7 +11,7 @@ public class BlockSelector : MonoBehaviour
     void Start()
     {
         Button button = GetComponent<Button>();
-        button.onClick.AddListener(IveClickedMyself);
+        button.onClick.AddListener(OnClick);
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class BlockSelector : MonoBehaviour
         
     }
 
-    void IveClickedMyself()
+    void OnClick()
     {
         HangarController.GetHangarController().SelectBlock(Block);
     }

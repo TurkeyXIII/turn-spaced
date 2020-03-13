@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,8 +26,6 @@ public class HangarController : MonoBehaviour
     void Start()
     {
         BlocksContentPane.GetComponent<BlockSelectorsContent>().SetBlockList(AllBlockSelectors);
-
-
     }
 
     // Update is called once per frame
@@ -37,6 +36,9 @@ public class HangarController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(MouseButton.RightClick))
             DeselectBlock();
+
+        if (Input.GetMouseButtonDown(MouseButton.LeftClick))
+            AttemptToPlaceSelectedBlock();
     }
 
     private void UpdateSelectedBlockToMousePosition()
@@ -53,6 +55,35 @@ public class HangarController : MonoBehaviour
 
         var construction = ShipUnderConstruction.GetComponent<Construction>();
         construction.ClearShadows();
+    }
+
+    private void AttemptToPlaceSelectedBlock()
+    {
+        if (_selectedBlock == null)
+            return;
+
+        var blockShadow = DetectShadowUnderMousePointer();
+
+        if (blockShadow == null)
+            return;
+
+        var construction = ShipUnderConstruction.GetComponent<Construction>();
+        //construction.ReplaceShadowWithBlock(blockShadow, _selectedBlock);
+    }
+
+    private BlockShadow DetectShadowUnderMousePointer()
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var hits = Physics2D.RaycastAll(ray.origin, Vector2.zero);
+
+        foreach (var hit in hits)
+        {
+            var blockShadow = hit.collider.GetComponent<BlockShadow>();
+            if (blockShadow != null)
+                return blockShadow;
+        }
+
+        return null;
     }
 
     public static HangarController GetHangarController()

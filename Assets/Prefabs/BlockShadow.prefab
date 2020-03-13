@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3337507497439021343}
   - component: {fileID: 3337507497439021342}
   - component: {fileID: 8945905200572737640}
+  - component: {fileID: -7257437894232933377}
   m_Layer: 0
   m_Name: BlockShadow
   m_TagString: Untagged
@@ -107,3 +108,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.76, y: 0.76}
   m_EdgeRadius: 0
+--- !u!114 &-7257437894232933377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337507497439021340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425623bf48231784b8605ae630090114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Block: {fileID: -5261167530821515431, guid: 69d4fdba813ac9049a040b20fdfbfb20, type: 3}
+  ColourDefault: {r: 0.5882353, g: 0.5882353, b: 1, a: 0.43529412}
+  ColourMouseOver: {r: 0.64705884, g: 0.92156863, b: 0.64705884, a: 0.7647059}

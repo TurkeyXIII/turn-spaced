@@ -1888,5 +1888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 8117083095921422948, guid: 9b030394f4ad9ae4598410e8724d0d37,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b030394f4ad9ae4598410e8724d0d37, type: 3}
