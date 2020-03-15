@@ -7,12 +7,44 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     public GameObject BlockShadow;
+    public GameObject TileEmpty;
+    public GameObject WallSection;
+    public Vector2Int Size;
 
     private List<Doorway> _doorways;
+    private GameObject[,] _tiles;
 
     void Awake()
     {
-        _doorways = GetComponentsInChildren<Doorway>().ToList();
+        if (Size.x < 1 || Size.y < 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        CreateTiles();
+
+        //_doorways = GetComponentsInChildren<Doorway>().ToList();
+    }
+
+    private void CreateTiles()
+    {
+        _tiles = new GameObject[Size.x, Size.y];
+
+        Vector3 bottomLeftCorner = new Vector3(-(float)Size.x / 2, -(float)Size.y / 2);
+
+        for (int i = 0; i < Size.x; i++)
+        {
+            for (int j = 0; j < Size.y; j++)
+            {
+                GameObject tile = Instantiate(TileEmpty, transform);
+                tile.transform.localPosition = bottomLeftCorner + new Vector3(i, j);
+
+                _tiles[i,j] = tile;
+            }
+        }
+
+
     }
 
     public List<Vector3> GetViableRoomPositions()
@@ -26,6 +58,8 @@ public class Block : MonoBehaviour
             viableRoomPositions.Add(viableRoomPosition);
         }
 
+        List<object> list = new List<object>();
+        
         return viableRoomPositions;
     }
 }
