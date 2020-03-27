@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using GameLogic;
+using BehaviourInterfaces;
 
-public class Block : MonoBehaviour
+public class Block : MonoBehaviour, IBlockBehaviour
 {
     public GameObject BlockShadow;
     public GameObject TileEmpty;
@@ -14,8 +16,12 @@ public class Block : MonoBehaviour
     private List<Doorway> _doorways;
     private GameObject[,] _tiles;
 
-    void Awake()
+    private BlockLogic _logic;
+
+    public void Awake()
     {
+        _logic = new BlockLogic(this);
+
         if (Size.x < 1 || Size.y < 1)
         {
             Destroy(gameObject);
@@ -43,8 +49,6 @@ public class Block : MonoBehaviour
                 _tiles[i,j] = tile;
             }
         }
-
-
     }
 
     public List<Vector3> GetViableRoomPositions()
