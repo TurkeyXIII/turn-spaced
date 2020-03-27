@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Assets.GameLogic
 {
-    public class BlockLogic : LogicBase<IBlockBehaviour>
+    public class TileLogic : LogicBase<ITileBehaviour>
     {
 
     }

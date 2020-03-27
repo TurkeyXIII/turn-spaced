@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using Assets.BehaviourFramework;
+using Assets.BehaviourInterfaces;
+using Assets.GameLogic;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : BehaviourBase<TileLogic, ITileBehaviour>, ITileBehaviour
 {
     private List<TileConnection> _tileConnections;
 

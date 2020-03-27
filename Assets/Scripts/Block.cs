@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using GameLogic;
-using BehaviourInterfaces;
+using Assets.GameLogic;
+using Assets.BehaviourInterfaces;
+using Assets.BehaviourFramework;
 
-public class Block : MonoBehaviour, IBlockBehaviour
+public class Block : BehaviourBase<BlockLogic, IBlockBehaviour>, IBlockBehaviour
 {
     public GameObject BlockShadow;
     public GameObject TileEmpty;
@@ -14,14 +15,10 @@ public class Block : MonoBehaviour, IBlockBehaviour
     public Vector2Int Size;
 
     private List<Doorway> _doorways;
-    private GameObject[,] _tiles;
-
-    private BlockLogic _logic;
+    private TileLogic[,] _tiles;
 
     public void Awake()
     {
-        _logic = new BlockLogic(this);
-
         if (Size.x < 1 || Size.y < 1)
         {
             Destroy(gameObject);
@@ -35,7 +32,7 @@ public class Block : MonoBehaviour, IBlockBehaviour
 
     private void CreateTiles()
     {
-        _tiles = new GameObject[Size.x, Size.y];
+        _tiles = new TileLogic[Size.x, Size.y];
 
         Vector3 bottomLeftCorner = new Vector3(-(float)Size.x / 2, -(float)Size.y / 2);
 
@@ -43,12 +40,19 @@ public class Block : MonoBehaviour, IBlockBehaviour
         {
             for (int j = 0; j < Size.y; j++)
             {
-                GameObject tile = Instantiate(TileEmpty, transform);
-                tile.transform.localPosition = bottomLeftCorner + new Vector3(i, j);
+                var tile = CreateTile(bottomLeftCorner + new Vector3(i, j));
 
                 _tiles[i,j] = tile;
             }
         }
+    }
+
+    public TileLogic CreateTile(Vector3 localPosition)
+    {
+        GameObject tile = Instantiate(TileEmpty, transform);
+        tile.transform.localPosition = localPosition;
+
+        return tile.GetComponent<Tile>().Logic;
     }
 
     public List<Vector3> GetViableRoomPositions()
