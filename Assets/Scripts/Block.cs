@@ -17,6 +17,8 @@ public class Block : BehaviourBase<BlockLogic, IBlockBehaviour>, IBlockBehaviour
     private List<Doorway> _doorways;
     private TileLogic[,] _tiles;
 
+    Vector2Int IBlockBehaviour.Size => Size;
+
     public void Awake()
     {
         if (Size.x < 1 || Size.y < 1)

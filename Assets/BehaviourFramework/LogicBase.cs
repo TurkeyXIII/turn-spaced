@@ -9,6 +9,6 @@ namespace Assets.BehaviourFramework
 {
     public abstract class LogicBase<T>
     {
-        public T Behaviour { private get; set; }
+        public T Behaviour { protected get; set; }
     }
 }
